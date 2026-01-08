@@ -9,11 +9,38 @@ I need to build something that can:
 - Extract meaningful information (classes, functions)
 - Show relationships between code elements
 
-## First Questions
+## If I Were an Intern...
 
-- What does "code intelligence" actually mean?
-- How do you parse Python programmatically?
-- What's the difference between text parsing and understanding structure?
+*This section shows my thought process. Not just what I built, but how I approached it.*
+
+### Day 1: Understanding the Problem
+
+**My first question:** "What does 'code intelligence' even mean?"
+
+I started by reading the documentation and realized: we want to help AI tools understand code better than just text. That means extracting *structure* — classes, functions, who calls whom.
+
+**Key insight:** The problem isn't "parse code" — it's "make code queryable."
+
+### Day 2: Research & Small Experiments
+
+Before writing the tool, I experimented:
+
+```python
+# experiment_1.py - Can I even parse Python?
+import ast
+code = open("some_file.py").read()
+tree = ast.parse(code)
+print(ast.dump(tree))  # Wow, that's a lot of info!
+```
+
+```python
+# experiment_2.py - Can I find functions?
+for node in ast.walk(tree):
+    if isinstance(node, ast.FunctionDef):
+        print(node.name)  # It works!
+```
+
+**What I learned:** Python's `ast` module does the hard work. I just need to walk the tree.
 
 ## Initial Research
 
