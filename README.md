@@ -1,13 +1,9 @@
-# Code Analyzer
+# Code Analyzer - Reference Implementation
 
-> Exploring how to build a tool that understands Python code structure.
+> **For AI Internship Candidates**: This is a working example of what you might build.
+> The goal isn't to copy this — it's to **understand the concepts** and build your own version.
 
-## The Problem
-
-I need to build something that can:
-- Read Python source code
-- Extract meaningful information (classes, functions)
-- Show relationships between code elements
+---
 
 ## If I Were an Intern...
 
@@ -42,9 +38,69 @@ for node in ast.walk(tree):
 
 **What I learned:** Python's `ast` module does the hard work. I just need to walk the tree.
 
-## Initial Research
+### Day 3: Building the MVP
 
-Looking into Python's `ast` module - it can parse source code into a tree structure.
-This seems more powerful than regex for understanding code.
+I decided to focus on THREE things only:
+1. Extract functions and classes
+2. Find what calls what
+3. Print useful output
 
-*More notes to come as I learn...*
+Everything else is scope creep. Ship something that works.
+
+### Day 4: Polish & Document
+
+Spent time on:
+- Comments explaining WHY, not just WHAT
+- A README that helps others learn
+- Example output so people can see what it does
+
+**What I'd do differently next time:**
+- Start with the output format first (what do I want to see?)
+- Write tests earlier (caught bugs manually that tests would've found)
+- Talk to other interns sooner (they had useful ideas)
+
+---
+
+## What This Tool Does
+
+```
+INPUT:  A directory containing Python source code
+OUTPUT: Extracted entities, relationships, and insights
+```
+
+---
+
+## Why We Built It This Way
+
+### Design Decisions (Read This!)
+
+| Decision | Why |
+|----------|-----|
+| **Plain Python** | No frameworks to learn. Focus on the concepts. |
+| **Standard library only** | `ast`, `pathlib`, `json` — nothing to install. |
+| **Small modules** | Each file does ONE thing. Easy to understand. |
+| **Heavy comments** | Code explains itself. Learn by reading. |
+
+### What We Deliberately Left Out
+
+- Fancy CLI frameworks (argparse is enough)
+- Colorful output (you can add `rich` later)
+- Database storage (JSON files work fine)
+- Web interface (terminal is plenty)
+
+**Why?** Because constraints force clarity. Build the simplest thing that works.
+
+---
+
+## Project Structure
+
+```
+code-analyzer/
+├── analyze.py          # Entry point - run this
+├── extractor.py        # Finds classes, functions, imports
+├── relationships.py    # Detects who calls whom
+├── output.py           # Formats and displays results
+└── README.md           # You're reading it
+```
+
+*More documentation coming as I build the actual code...*
